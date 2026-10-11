@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 ESL Masterclass: Conversation, Grammar & Vocabulary</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #0d9488;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-accent: #f1f5f9;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --font: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --secondary: #14b8a6;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-accent: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+        .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Section Cards & Filters */
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .chip.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-accent);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Vocabulary Table & Grid */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .vocab-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+            position: relative;
+        }
+
+        .vocab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .vocab-word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .vocab-pos {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .vocab-ipa {
+            font-family: monospace;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vocab-def {
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .vocab-example {
+            font-size: 0.9rem;
+            background: var(--bg-accent);
+            padding: 0.6rem;
+            border-radius: 6px;
+            color: var(--text-main);
+            border-left: 3px solid var(--secondary);
+        }
+
+        .audio-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .audio-btn:hover {
+            transform: scale(1.15);
+        }
+
+        /* Flashcard Mode */
+        .flashcard-wrapper {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 2rem auto;
+            height: 280px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary);
+            text-align: center;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+            background: var(--bg-accent);
+        }
+
+        .fc-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.6rem 1.2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Speaking Questions Accordion / List */
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .question-card {
+            background: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .q-header {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .q-number {
+            background: var(--secondary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .q-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            flex: 1;
+        }
+
+        .q-badge {
+            background: var(--bg-accent);
+            color: var(--primary);
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .q-hint-toggle {
+            margin-top: 0.75rem;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .q-hint-box {
+            display: none;
+            margin-top: 0.75rem;
+            padding: 0.8rem;
+            background: var(--bg-accent);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary);
+        }
+        .q-hint-box.show {
+            display: block;
+        }
+
+        /* Random Question Spinner Wheel / Card */
+        .random-picker-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-accent));
+            border: 2px dashed var(--primary);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .random-q-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--primary);
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Practice Quiz */
+        .quiz-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-opt {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            background: var(--bg-accent);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .quiz-opt:hover {
+            border-color: var(--primary);
+        }
+        .quiz-opt.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #14532d;
+        }
+        .quiz-opt.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+
+        /* Summary Stats Header */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            header, .theme-toggle-btn, .tabs, .controls-bar, .fc-controls, .random-picker-card, .btn-action, .audio-btn {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .tab-content {
+                display: block !important;
+            }
+            .vocab-card, .question-card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                margin-bottom: 1rem !important;
+            }
+            .q-hint-box {
+                display: block !important;
+                border: 1px dashed #999 !important;
+                background: #f9f9f9 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle-btn" onclick="toggleTheme()">
+            🌙 Toggle Theme
+        </button>
+        <h1>A2 ESL Speaking & Vocabulary Masterclass</h1>
+        <p>Comprehensive English Lesson for Adult Learners: Grammar-Based Discussion & Essential Vocabulary</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Stats Overview Bar -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num">A2</div>
+                <div class="stat-label">CEFR Level</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">52</div>
+                <div class="stat-label">Target Words</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">36</div>
+                <div class="stat-label">Speaking Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">6</div>
+                <div class="stat-label">Grammar Targets</div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('vocab-tab')">📚 Target Vocabulary (52)</button>
+            <button class="tab-btn" onclick="switchTab('flashcard-tab')">🎴 Interactive Flashcards</button>
+            <button class="tab-btn" onclick="switchTab('speaking-tab')">💬 Speaking Questions (36)</button>
+            <button class="tab-btn" onclick="switchTab('random-tab')">🎲 Random Question Picker</button>
+            <button class="tab-btn" onclick="switchTab('quiz-tab')">📝 Practice Quiz</button>
+        </div>
+
+        <!-- TAB 1: VOCABULARY LIST -->
+        <div id="vocab-tab" class="tab-content active">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <input type="text" id="vocabSearch" placeholder="🔍 Search vocabulary word or definition..." oninput="filterVocab()">
+                </div>
+                <div class="filter-group" id="vocabCategoryFilters">
+                    <button class="chip active" onclick="filterVocabCategory('all', this)">All</button>
+                    <button class="chip" onclick="filterVocabCategory('Routines', this)">Daily Routines</button>
+                    <button class="chip" onclick="filterVocabCategory('Travel', this)">Travel & Vacation</button>
+                    <button class="chip" onclick="filterVocabCategory('Work', this)">Work & Career</button>
+                    <button class="chip" onclick="filterVocabCategory('Food', this)">Food & Dining</button>
+                    <button class="chip" onclick="filterVocabCategory('Leisure', this)">Hobbies & Feelings</button>
+                </div>
+                <button class="view-btn" onclick="window.print()">🖨️ Print Worksheet</button>
+            </div>
+
+            <div class="vocab-grid" id="vocabGrid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+        <!-- TAB 2: FLASHCARDS -->
+        <div id="flashcard-tab" class="tab-content">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <h3>Click card to flip • Use buttons to navigate</h3>
+            </div>
+            <div class="flashcard-wrapper" onclick="flipCard()">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-front">
+                        <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--secondary); font-weight: bold;" id="fcCategory">Category</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin: 0.5rem 0;" id="fcWord">Word</div>
+                        <div style="font-family: monospace; color: var(--text-muted);" id="fcIpa">/ipa/</div>
+                        <div style="font-style: italic; margin-top: 0.5rem;" id="fcPos">(part of speech)</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;" id="fcDef">Definition</div>
+                        <div class="vocab-example" id="fcExample">"Example sentence goes here."</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fc-controls">
+                <button class="btn-action" onclick="prevCard()">← Previous</button>
+                <button class="btn-action" onclick="speakCurrentCard()">🔊 Listen</button>
+                <button class="btn-action" onclick="nextCard()">Next →</button>
+            </div>
+            <div style="text-align: center; margin-top: 1rem; color: var(--text-muted);" id="fcCounter">Card 1 of 52</div>
+        </div>
+
+        <!-- TAB 3: SPEAKING QUESTIONS -->
+        <div id="speaking-tab" class="tab-content">
+            <div class="controls-bar">
+                <div class="filter-group" id="grammarFilters">
+                    <button class="chip active" onclick="filterGrammar('all', this)">All Grammar (36)</button>
+                    <button class="chip" onclick="filterGrammar('Present Simple vs Continuous', this)">Present Simple / Continuous</button>
+                    <button class="chip" onclick="filterGrammar('Past Simple', this)">Past Simple</button>
+                    <button class="chip" onclick="filterGrammar('Present Perfect', this)">Present Perfect</button>
+                    <button class="chip" onclick="filterGrammar('Future Forms', this)">Future Forms</button>
+                    <button class="chip" onclick="filterGrammar('Modal Verbs', this)">Modals</button>
+                    <button class="chip" onclick="filterGrammar('Comparatives', this)">Comparatives & Superlatives</button>
+                </div>
+            </div>
+
+            <div class="questions-list" id="questionsList">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+        <!-- TAB 4: RANDOM QUESTION PICKER -->
+        <div id="random-tab" class="tab-content">
+            <div class="random-picker-card">
+                <h2>🎲 Interactive Conversation Wheel</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Click below to pick a random speaking question for pair practice!</p>
+                <div class="q-badge" id="randomGrammarBadge">Press button to start</div>
+                <div class="random-q-text" id="randomQuestionText">"Ready for your first question?"</div>
+                <div style="display: flex; justify-content: center; gap: 1rem;">
+                    <button class="btn-action" onclick="pickRandomQuestion()" style="font-size: 1.1rem; padding: 0.8rem 1.8rem;">🎲 Next Question</button>
+                    <button class="btn-action" onclick="speakRandomQuestion()" style="background: var(--secondary);">🔊 Speak Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: PRACTICE QUIZ -->
+        <div id="quiz-tab" class="tab-content">
+            <h2 style="margin-bottom: 1.5rem;">A2 Vocabulary & Grammar Quick Quiz</h2>
+            <div id="quizContainer">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Data Store: 52 Vocabulary Words
+        const vocabularyData = [
+            // Daily Routines
+            { word: "Accomplish", pos: "verb", ipa: "/əˈkʌm.plɪʃ/", def: "To complete something successfully.", example: "I want to accomplish three goals before lunch.", category: "Routines" },
+            { word: "Routine", pos: "noun", ipa: "/ruːˈtiːn/", def: "Your normal order of doing things every day.", example: "My morning routine starts with a hot cup of coffee.", category: "Routines" },
+            { word: "Commute", pos: "verb", ipa: "/kəˈmjuːt/", def: "To travel regularly between home and work.", example: "She commutes to work by train every morning.", category: "Routines" },
+            { word: "Exhausted", pos: "adjective", ipa: "/ɪɡˈzɔː.stɪd/", def: "Extremely tired.", example: "After working 10 hours, he felt completely exhausted.", category: "Routines" },
+            { word: "Convenient", pos: "adjective", ipa: "/kənˈviː.ni.ənt/", def: "Useful, easy, or quick to do.", example: "Living near the subway is very convenient.", category: "Routines" },
+            { word: "Prepare", pos: "verb", ipa: "/prɪˈpeər/", def: "To make something ready for use.", example: "We need to prepare dinner before our guests arrive.", category: "Routines" },
+            { word: "Habit", pos: "noun", ipa: "/ˈhæb.ɪt/", def: "Something you do often and regularly.", example: "Drinking water in the morning is a healthy habit.", category: "Routines" },
+            { word: "Organize", pos: "verb", ipa: "/ˈɔː.ɡən.aɪz/", def: "To arrange things neatly or plan an activity.", example: "She likes to organize her desk every Friday.", category: "Routines" },
+            { word: "Schedule", pos: "noun", ipa: "/ˈʃed.juːl/", def: "A plan that lists times and events.", example: "I have a very busy schedule this week.", category: "Routines" },
+            { word: "Relax", pos: "verb", ipa: "/rɪˈlæks/", def: "To rest and become less anxious.", example: "I like to relax by listening to music.", category: "Routines" },
+
+            // Travel
+            { word: "Destination", pos: "noun", ipa: "/ˌdes.tɪˈneɪ.ʃən/", def: "The place where someone is going.", example: "Paris is a very popular travel destination.", category: "Travel" },
+            { word: "Baggage", pos: "noun", ipa: "/ˈbæɡ.ɪdʒ/", def: "Bags and suitcases that you take on a trip.", example: "Please do not leave your baggage unattended.", category: "Travel" },
+            { word: "Explore", pos: "verb", ipa: "/ɪkˈsplɔːr/", def: "To travel around a new place to learn about it.", example: "We want to explore the old city center today.", category: "Travel" },
+            { word: "Departure", pos: "noun", ipa: "/dɪˈpɑː.tʃər/", def: "The act of leaving a place.", example: "Our flight departure was delayed by one hour.", category: "Travel" },
+            { word: "Accommodation", pos: "noun", ipa: "/əˌkɒm.əˈdeɪ.ʃən/", def: "A place to stay, such as a hotel.", example: "We booked cheap accommodation near the beach.", category: "Travel" },
+            { word: "Reservation", pos: "noun", ipa: "/ˌrez.əˈveɪ.ʃən/", def: "An arrangement to keep a room or table.", example: "I made a hotel reservation for three nights.", category: "Travel" },
+            { word: "Guidebook", pos: "noun", ipa: "/ˈɡaɪd.bʊk/", def: "A book that gives information about a place.", example: "The guidebook recommended a great local museum.", category: "Travel" },
+            { word: "Sightseeing", pos: "noun", ipa: "/ˈsaɪtˌsiː.ɪŋ/", def: "Visiting interesting places as a tourist.", example: "We spent the afternoon sightseeing in Tokyo.", category: "Travel" },
+            { word: "Passenger", pos: "noun", ipa: "/ˈpæs.ən.dʒər/", def: "A person traveling in a vehicle.", example: "All passengers must wear their seatbelts.", category: "Travel" },
+            { word: "Overseas", pos: "adverb", ipa: "/ˌəʊ.vəˈsiːz/", def: "In or to a foreign country across the sea.", example: "Have you ever traveled overseas?", category: "Travel" },
+
+            // Work
+            { word: "Colleague", pos: "noun", ipa: "/ˈkɒl.iːɡ/", def: "A person you work with.", example: "I had lunch with my colleagues today.", category: "Work" },
+            { word: "Application", pos: "noun", ipa: "/ˌæp.lɪˈkeɪ.ʃən/", def: "An official request for a job.", example: "He sent his job application yesterday.", category: "Work" },
+            { word: "Deadline", pos: "noun", ipa: "/ˈded.laɪn/", def: "A time or date when something must be finished.", example: "The project deadline is next Monday.", category: "Work" },
+            { word: "Experience", pos: "noun", ipa: "/ɪkˈspɪə.ri.əns/", def: "Knowledge or skill gained from doing something.", example: "She has five years of experience in sales.", category: "Work" },
+            { word: "Salary", pos: "noun", ipa: "/ˈsæl.ər.i/", def: "Money earned regularly for doing work.", example: "They offered him a competitive monthly salary.", category: "Work" },
+            { word: "Interview", pos: "noun", ipa: "/ˈɪn.tə.vjuː/", def: "A formal meeting to ask questions to a candidate.", example: "I have a job interview tomorrow at 10 AM.", category: "Work" },
+            { word: "Promote", pos: "verb", ipa: "/prəˈməʊt/", def: "To give someone a higher position at work.", example: "They decided to promote her to team manager.", category: "Work" },
+            { word: "Responsibility", pos: "noun", ipa: "/rɪˌspɒn.sɪˈbɪl.ə.ti/", def: "Something that is your duty to take care of.", example: "Answering emails is my main responsibility.", category: "Work" },
+            { word: "Skills", pos: "noun (plural)", ipa: "/skɪlz/", def: "Abilities that you learn and practice.", example: "Good communication skills are essential for work.", category: "Work" },
+            { word: "Professional", pos: "adjective", ipa: "/prəˈfeʃ.ən.əl/", def: "Suitable for a business environment.", example: "Always write professional emails to clients.", category: "Work" },
+
+            // Food & Dining
+            { word: "Delicious", pos: "adjective", ipa: "/dɪˈlɪʃ.əs/", def: "Having a very pleasant taste.", example: "This homemade soup tastes delicious.", category: "Food" },
+            { word: "Ingredient", pos: "noun", ipa: "/ɪnˈɡriː.di.ənt/", def: "One of the foods used to make a dish.", example: "Fresh basil is a key ingredient in pesto.", category: "Food" },
+            { word: "Recommend", pos: "verb", ipa: "/ˌrek.əˈmend/", def: "To suggest something as good or suitable.", example: "Can you recommend a good Italian restaurant?", category: "Food" },
+            { word: "Healthy", pos: "adjective", ipa: "/ˈhel.θi/", def: "Good for your body and health.", example: "Eating vegetables is vital for a healthy lifestyle.", category: "Food" },
+            { word: "Recipe", pos: "noun", ipa: "/ˈres.ɪ.pi/", def: "Instructions for cooking a dish.", example: "I followed my grandmother's recipe for apple pie.", category: "Food" },
+            { word: "Vegetarian", pos: "adjective", ipa: "/ˌvedʒ.ɪˈteə.ri.ən/", def: "Containing no meat or fish.", example: "She always orders vegetarian options.", category: "Food" },
+            { word: "Beverage", pos: "noun", ipa: "/ˈbev.ər.ɪdʒ/", def: "A drink of any kind.", example: "Hot tea is a popular beverage in winter.", category: "Food" },
+            { word: "Flavor", pos: "noun", ipa: "/ˈfleɪ.vər/", def: "How food or drink tastes.", example: "Ice cream comes in many different flavors.", category: "Food" },
+            { word: "Service", pos: "noun", ipa: "/ˈsɜː.vɪs/", def: "The way staff treat customers in a venue.", example: "The food was great and the service was friendly.", category: "Food" },
+            { word: "Traditional", pos: "adjective", ipa: "/trəˈdɪʃ.ən.əl/", def: "Following old customs or habits.", example: "We enjoyed a traditional local dish for dinner.", category: "Food" },
+
+            // Leisure & Feelings
+            { word: "Enthusiastic", pos: "adjective", ipa: "/ɪnˌθjuː.ziˈæs.tɪk/", def: "Showing lots of excitement and interest.", example: "He is very enthusiastic about learning English.", category: "Leisure" },
+            { word: "Activity", pos: "noun", ipa: "/ækˈtɪv.ə.ti/", def: "Something that you do for enjoyment.", example: "Hiking is my favorite outdoor activity.", category: "Leisure" },
+            { word: "Opportunity", pos: "noun", ipa: "/ˌɒp.əˈtʃuː.nə.ti/", def: "A chance to do something positive.", example: "Travel gives you the opportunity to meet people.", category: "Leisure" },
+            { word: "Comfortable", pos: "adjective", ipa: "/ˈkʌm.fə.tə.bəl/", def: "Giving physical ease and relaxation.", example: "These shoes are very comfortable for walking.", category: "Leisure" },
+            { word: "Improve", pos: "verb", ipa: "/ɪmˈpruːv/", def: "To make or become better.", example: "I practice daily to improve my English fluency.", category: "Leisure" },
+            { word: "Preference", pos: "noun", ipa: "/ˈpref.ər.əns/", def: "Liking one thing more than another.", example: "Do you have a preference for tea or coffee?", category: "Leisure" },
+            { word: "Challenge", pos: "noun", ipa: "/ˈtʃæl.ɪndʒ/", def: "Something new and difficult to do.", example: "Learning a new language is a fun challenge.", category: "Leisure" },
+            { word: "Disappointed", pos: "adjective", ipa: "/ˌdɪs.əˈpɔɪn.tɪd/", def: "Unhappy because something was not good.", example: "He was disappointed that the match was canceled.", category: "Leisure" },
+            { word: "Entertainment", pos: "noun", ipa: "/ˌen.təˈteɪn.mənt/", def: "Shows, movies, or games that amuse people.", example: "The resort offers live music entertainment.", category: "Leisure" },
+            { word: "Confident", pos: "adjective", ipa: "/ˈkɒn.fɪ.dənt/", def: "Feeling sure of your abilities.", example: "She feels confident about speaking English.", category: "Leisure" },
+            { word: "Memory", pos: "noun", ipa: "/ˈmem.ər.i/", def: "Something you remember from the past.", example: "Visiting Rome left me with great memories.", category: "Leisure" },
+            { word: "Socialize", pos: "verb", ipa: "/ˈsəʊ.ʃəl.aɪz/", def: "To spend time enjoying yourself with friends.", example: "I like to socialize with colleagues on Friday.", category: "Leisure" }
+        ];
+
+        // Data Store: 36 Grammar-Based Speaking Questions
+        const questionsData = [
+            // Present Simple vs Continuous
+            { id: 1, grammar: "Present Simple vs Continuous", text: "What is your typical morning routine, and what project are you working on this week?", hint: "Target grammar: 'I usually wake up at...' (Routine) vs 'This week I am working on...' (Temporary action)." },
+            { id: 2, grammar: "Present Simple vs Continuous", text: "How do you usually travel to work or school, and how are you traveling today?", hint: "Target grammar: 'I normally commute by bus, but today I am walking.'" },
+            { id: 3, grammar: "Present Simple vs Continuous", text: "What do you usually do on weekends, and what are you doing this coming weekend?", hint: "Target grammar: 'On weekends I relax, but this weekend I am visiting family.'" },
+            { id: 4, grammar: "Present Simple vs Continuous", text: "Do you usually cook at home, or are you eating out more often these days?", hint: "Target grammar: 'I usually cook dinner, but lately I am eating out at restaurants.'" },
+            { id: 5, grammar: "Present Simple vs Continuous", text: "How often do you practice English, and what specific skills are you trying to improve right now?", hint: "Target grammar: 'I practice twice a week. Right now I am trying to improve my vocabulary.'" },
+            { id: 6, grammar: "Present Simple vs Continuous", text: "Where do you usually go on vacation, and are you planning a trip currently?", hint: "Target grammar: 'We usually go to the beach, but currently we are planning a city break.'" },
+
+            // Past Simple
+            { id: 7, grammar: "Past Simple", text: "Where did you go on your last vacation, and who did you go with?", hint: "Target grammar: Use past verbs: 'I went to Italy with my friends. We visited Rome.'" },
+            { id: 8, grammar: "Past Simple", text: "What did you do yesterday evening after work or school?", hint: "Target grammar: 'Yesterday I cooked dinner, watched a movie, and relaxed.'" },
+            { id: 9, grammar: "Past Simple", text: "When was the last time you ate at a restaurant, and what food did you order?", hint: "Target grammar: 'Last Saturday I ate at an Italian place. I ordered seafood pasta.'" },
+            { id: 10, grammar: "Past Simple", text: "What was your favorite subject when you were at school?", hint: "Target grammar: 'My favorite subject was History because I enjoyed learning about old cities.'" },
+            { id: 11, grammar: "Past Simple", text: "How did you get your first job, and what responsibilities did you have?", hint: "Target grammar: 'I applied online. My main responsibility was answering phone calls.'" },
+            { id: 12, grammar: "Past Simple", text: "Did you watch an interesting movie or show last weekend? Describe what happened.", hint: "Target grammar: 'Yes, I watched a comedy film. It was about a family traveling overseas.'" },
+
+            // Present Perfect
+            { id: 13, grammar: "Present Perfect", text: "Have you ever visited another country? Where did you go and when?", hint: "Target grammar: 'Yes, I have been to Spain. I went there two years ago.'" },
+            { id: 14, grammar: "Present Perfect", text: "Have you ever tried an unusual food or sport? Would you like to try it again?", hint: "Target grammar: 'I have tried sushi before. I liked the fresh flavor.'" },
+            { id: 15, grammar: "Present Perfect", text: "Have you accomplished any important personal goals recently?", hint: "Target grammar: 'Recently, I have accomplished my goal of finishing a certificate course.'" },
+            { id: 16, grammar: "Present Perfect", text: "Have you ever lost your baggage or wallet while traveling?", hint: "Target grammar: 'No, I have never lost my luggage, but my friend lost his suitcase once.'" },
+            { id: 17, grammar: "Present Perfect", text: "Have you ever changed your career path or started learning a new skill?", hint: "Target grammar: 'Yes, I have started learning web design recently.'" },
+            { id: 18, grammar: "Present Perfect", text: "Have you lived in more than one city in your life? Which one did you prefer?", hint: "Target grammar: 'I have lived in two cities. I preferred the smaller town.'" },
+
+            // Future Forms
+            { id: 19, grammar: "Future Forms", text: "What are you going to do right after this English lesson today?", hint: "Target grammar: Use 'going to' for planned intentions: 'I am going to prepare dinner.'" },
+            { id: 20, grammar: "Future Forms", text: "Where are you going to travel for your next holiday?", hint: "Target grammar: 'I am going to visit Greece because I want to explore historical sights.'" },
+            { id: 21, grammar: "Future Forms", text: "What personal or career goals are you going to accomplish this year?", hint: "Target grammar: 'I am going to improve my English fluency and apply for a new role.'" },
+            { id: 22, grammar: "Future Forms", text: "Do you think technology will change your job in the next ten years?", hint: "Target grammar: Use 'will' for predictions: 'Yes, technology will automate many daily tasks.'" },
+            { id: 23, grammar: "Future Forms", text: "Will you move to a new city or apartment in the future? Why or why not?", hint: "Target grammar: 'I think I will stay in my current city because it is very convenient.'" },
+            { id: 24, grammar: "Future Forms", text: "How do you think your English skills will help your career in 5 years?", hint: "Target grammar: 'Good English skills will give me opportunities to work with international colleagues.'" },
+
+            // Modal Verbs
+            { id: 25, grammar: "Modal Verbs", text: "What key skills should a good manager or team leader have?", hint: "Target grammar: 'A good manager should communicate clearly and support their team.'" },
+            { id: 26, grammar: "Modal Verbs", text: "What important rules must employees or students follow in your country?", hint: "Target grammar: 'Employees must arrive on time and follow safety rules.'" },
+            { id: 27, grammar: "Modal Verbs", text: "What do you have to do every day at work or home that you don't enjoy?", hint: "Target grammar: 'I have to clean the kitchen every evening after cooking.'" },
+            { id: 28, grammar: "Modal Verbs", text: "What foreign languages can you speak, and which one would you like to learn?", hint: "Target grammar: 'I can speak Spanish fluently, and I would love to learn Japanese.'" },
+            { id: 29, grammar: "Modal Verbs", text: "What helpful advice should you give to a tourist visiting your town for the first time?", hint: "Target grammar: 'Tourists should try the local seafood and use public transportation.'" },
+            { id: 30, grammar: "Modal Verbs", text: "Can you drive a car or ride a bicycle? When did you learn?", hint: "Target grammar: 'I can drive a car. I learned when I was 18 years old.'" },
+
+            // Comparatives & Superlatives
+            { id: 31, grammar: "Comparatives", text: "Is living in a big city better than living in a small town? Why?", hint: "Target grammar: 'Big cities are more exciting than small towns, but small towns are quieter.'" },
+            { id: 32, grammar: "Comparatives", text: "What is the most beautiful place you have ever visited in your country?", hint: "Target grammar: 'The most beautiful place is the mountain region near the coast.'" },
+            { id: 33, grammar: "Comparatives", text: "Which is more convenient: shopping online or shopping in physical stores?", hint: "Target grammar: 'Online shopping is more convenient, but physical stores are faster.'" },
+            { id: 34, grammar: "Comparatives", text: "What was the hardest challenge you faced when you started learning English?", hint: "Target grammar: 'The hardest challenge was understanding fast speakers and listening skills.'" },
+            { id: 35, grammar: "Comparatives", text: "Who is the most inspiring or interesting person you know?", hint: "Target grammar: 'My grandmother is the most inspiring person because she works very hard.'" },
+            { id: 36, grammar: "Comparatives", text: "Which season is the best time of year to visit your country and why?", hint: "Target grammar: 'Autumn is the best season because the weather is milder than summer.'" }
+        ];
+
+        // Data Store: Quiz Questions
+        const quizData = [
+            {
+                q: "1. Complete the sentence: 'She usually ______ to work by train, but today she ______ her car.'",
+                opts: [
+                    "commutes / is driving",
+                    "is commuting / drives",
+                    "commuted / drive",
+                    "commute / driving"
+                ],
+                ans: 0
+            },
+            {
+                q: "2. Which word means 'bags and suitcases you take on a trip'?",
+                opts: ["Accommodation", "Baggage", "Guidebook", "Departure"],
+                ans: 1
+            },
+            {
+                q: "3. Complete with Present Perfect: 'I ______ overseas three times in my life.'",
+                opts: ["traveled", "have traveled", "am traveling", "will travel"],
+                ans: 1
+            },
+            {
+                q: "4. What is the correct comparative form? 'Living near the subway is ______ than living far away.'",
+                opts: ["more convenient", "convenienter", "most convenient", "convenient"],
+                ans: 0
+            },
+            {
+                q: "5. Which modal verb shows obligation? 'All passengers ______ wear seatbelts.'",
+                opts: ["can", "should", "must", "might"],
+                ans: 2
+            }
+        ];
+
+        // App State Variables
+        let currentVocabFilter = 'all';
+        let currentGrammarFilter = 'all';
+        let currentCardIndex = 0;
+
+        // Init App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderVocabGrid();
+            renderQuestions();
+            updateFlashcard();
+            renderQuiz();
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Render Vocabulary Grid
+        function renderVocabGrid() {
+            const container = document.getElementById('vocabGrid');
+            const query = document.getElementById('vocabSearch').value.toLowerCase();
+            
+            const filtered = vocabularyData.filter(item => {
+                const matchesCategory = currentVocabFilter === 'all' || item.category === currentVocabFilter;
+                const matchesQuery = item.word.toLowerCase().includes(query) || item.def.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            container.innerHTML = filtered.map(item => `
+                <div class="vocab-card">
+                    <div class="vocab-header">
+                        <div>
+                            <span class="vocab-word">${item.word}</span>
+                            <button class="audio-btn" onclick="speakText('${item.word}')" title="Pronounce">🔊</button>
+                        </div>
+                        <span class="vocab-pos">${item.pos}</span>
+                    </div>
+                    <div class="vocab-ipa">${item.ipa}</div>
+                    <div class="vocab-def">${item.def}</div>
+                    <div class="vocab-example">"${item.example}"</div>
+                </div>
+            `).join('');
+        }
+
+        function filterVocabCategory(cat, btn) {
+            currentVocabFilter = cat;
+            document.querySelectorAll('#vocabCategoryFilters .chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            renderVocabGrid();
+        }
+
+        function filterVocab() {
+            renderVocabGrid();
+        }
+
+        // Flashcards Logic
+        function updateFlashcard() {
+            const cardData = vocabularyData[currentCardIndex];
+            document.getElementById('fcCategory').innerText = cardData.category;
+            document.getElementById('fcWord').innerText = cardData.word;
+            document.getElementById('fcIpa').innerText = cardData.ipa;
+            document.getElementById('fcPos').innerText = `(${cardData.pos})`;
+            document.getElementById('fcDef').innerText = cardData.def;
+            document.getElementById('fcExample').innerText = `"${cardData.example}"`;
+            document.getElementById('fcCounter').innerText = `Card ${currentCardIndex + 1} of ${vocabularyData.length}`;
+            
+            // Ensure flipped state is reset when changing cards
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % vocabularyData.length;
+            updateFlashcard();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + vocabularyData.length) % vocabularyData.length;
+            updateFlashcard();
+        }
+
+        function speakCurrentCard() {
+            const word = vocabularyData[currentCardIndex].word;
+            speakText(word);
+        }
+
+        // Render Speaking Questions
+        function renderQuestions() {
+            const container = document.getElementById('questionsList');
+            const filtered = questionsData.filter(q => {
+                return currentGrammarFilter === 'all' || q.grammar.includes(currentGrammarFilter);
+            });
+
+            container.innerHTML = filtered.map(q => `
+                <div class="question-card">
+                    <div class="q-header">
+                        <div class="q-number">${q.id}</div>
+                        <div class="q-title">${q.text}</div>
+                        <div class="q-badge">${q.grammar}</div>
+                    </div>
+                    <button class="q-hint-toggle" onclick="toggleHint(${q.id})">💡 Show Grammar Tip & Sample Answer</button>
+                    <div class="q-hint-box" id="hint-${q.id}">
+                        ${q.hint}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGrammar(target, btn) {
+            currentGrammarFilter = target;
+            document.querySelectorAll('#grammarFilters .chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            renderQuestions();
+        }
+
+        function toggleHint(id) {
+            const hintBox = document.getElementById(`hint-${id}`);
+            hintBox.classList.toggle('show');
+        }
+
+        // Random Question Picker
+        let currentRandomQuestion = null;
+        function pickRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questionsData.length);
+            currentRandomQuestion = questionsData[randomIndex];
+            document.getElementById('randomGrammarBadge').innerText = currentRandomQuestion.grammar;
+            document.getElementById('randomQuestionText').innerText = `"${currentRandomQuestion.text}"`;
+        }
+
+        function speakRandomQuestion() {
+            if (currentRandomQuestion) {
+                speakText(currentRandomQuestion.text);
+            } else {
+                pickRandomQuestion();
+                speakText(currentRandomQuestion.text);
+            }
+        }
+
+        // Quiz Logic
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = quizData.map((item, qIdx) => `
+                <div class="quiz-card">
+                    <div style="font-weight: 700; margin-bottom: 1rem;">${item.q}</div>
+                    <div>
+                        ${item.opts.map((opt, oIdx) => `
+                            <button class="quiz-opt" onclick="checkAnswer(${qIdx}, ${oIdx}, this)">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer(qIdx, selectedIdx, btn) {
+            const q = quizData[qIdx];
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.quiz-opt');
+
+            buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+
+            if (selectedIdx === q.ans) {
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('incorrect');
+                buttons[q.ans].classList.add('correct');
+            }
+        }
+
+        // Native Browser SpeechSynthesis API
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop any ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9; // Slightly slower for language learners
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Text-to-speech is not supported in this browser.");
+            }
+        }
+    </script>
+</body>
+</html>
